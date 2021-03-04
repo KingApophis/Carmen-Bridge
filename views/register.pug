@@ -3,9 +3,10 @@ extends layouts/login-layout.pug
 block content
     .loginContainer
         h1 Register
-        form#registerForm(method="post", onsubmit="event.preventDefault(); validateForm();")
-
-            p.errorMessage #{errorMessage}
+        //-"event.preventDefault()" prevents the formal behaviour, here the stops the form from being submitted, and we call our validate function instead.
+        form#registerForm(method="post", onsubmit="event.preventDefault(); validateForm();") 
+            //-we're essentially passing the error message from registerRoutes into this place
+            p.errorMessage #{errorMessage} 
 
             input(type="text", name="firstName", placeholder="First name", value=firstName required="")
             input(type="text", name="lastName", placeholder="Last name", value=lastName required="")
@@ -14,9 +15,10 @@ block content
             input#password(type="password", name="password", placeholder="Password", required="")
             input#passwordConf(type="password", name="passwordConf", placeholder="Confirm password", required="")
             input(type="submit", value="Login")
-
+        //- redirecting to login page if they already have an account
         a(href="/login") Already have an account? Login here.
     
+    //- we can write normal JS code under 'script.' (<div class='script'>)
     script.
         var passwordField = document.getElementById("password")
         var passwordConfirmField = document.getElementById("passwordConf")
@@ -24,7 +26,7 @@ block content
 
         function validateForm() {
             if(passwordField.value != passwordConfirmField.value) {
-                alert("Passwords do not match. Please try again.")
+                alert("Passwords do not match. Try again.")
             }
             else {
                 form.submit();

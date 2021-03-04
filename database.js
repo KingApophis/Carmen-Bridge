@@ -1,9 +1,15 @@
+//The require(‘mongoose’) call above returns a Singleton object. 
+//It means that the first time you call require(‘mongoose’), it 
+//is creating an instance of the Mongoose class and returning it. 
+//On subsequent calls, it will return the same instance that was 
+//created and returned to you the first time because of how module 
+//import/export works in ES6.
 const mongoose = require("mongoose");
-mongoose.set('useNewUrlParser', true);
-mongoose.set('useUnifiedTopology', true);
-mongoose.set('useFindAndModify', false);
+mongoose.set('useNewUrlParser', true); //accounting to warnings
+mongoose.set('useUnifiedTopology', true); //accounting to warnings
+mongoose.set('useFindAndModify', false); //accounting to warnings
 
-class Databse {
+class Database {
 
     constructor() {
         this.connect();
@@ -12,12 +18,12 @@ class Databse {
     connect() {
         mongoose.connect("mongodb+srv://admin:musicbox@musicbox.z5l02.mongodb.net/MusicBoxDB?retryWrites=true&w=majority")
             .then(() => {
-                console.log("database connection successful!");
+                console.log("database connection successful");
             })
             .catch((err) => {
-                console.log("database connection error!!!" + err);
+                console.log("database connection error " + err);
             })
     }
 }
 
-module.exports = new Databse();
+module.exports = new Database();

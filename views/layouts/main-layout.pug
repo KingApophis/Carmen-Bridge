@@ -1,23 +1,29 @@
+//- this is the first file to load
+
+//- to access the mixins file in mixins folder that has reusable code
+//- we linked it here, because every page linked to this page will also be able to use the mixins file
 include ../mixins/mixins
 
-doctype html
+<!DOCTYPE html>
 html(lang="en")
     head
         meta(charset="UTF-8")
-        meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title #{pageTitle}
+        link(rel='stylesheet', href='https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.9/cropper.min.css')
+        //- adding bootstrap for CSS
         link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css', integrity='sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh', crossorigin='anonymous')
-        link(rel="stylesheet", href="/css/main.css")
+        //- link to our own CSS styling page
+        link(rel="stylesheet", href="/css/main.css") 
     body
         script.
             var userLoggedIn = !{userLoggedInJs};
-        .wrapper 
+        .wrapper
             .row
-                nav.col-2 
+                nav.col-2
                     a.green(href="/")
-                        i.fas.fa-headphones-alt 
-                    a(href="/")
+                        i.fas.fa-headphones-alt
+                    a(href="/").row-1
                         i.fas.fa-home
                     a(href="/music")
                         i.fas.fa-play
@@ -35,19 +41,24 @@ html(lang="en")
                 .mainSectionContainer.col-10.col-md-8.col-lg-6
                     .titleContainer
                         h1 #{pageTitle}
-                    block content 
+                        block headerButton
 
-                div.d-none.d-md-block.col-md-2.col-lg-4
-                    
+                    block content
+                .d-none.d-md-block.col-md-2.col-lg-4
+        #notificationList
 
-
-        
-        script(src='https://kit.fontawesome.com/fb8d36f674.js', crossorigin='anonymous')
-        script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js', integrity='sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q', crossorigin='anonymous')
-        script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js', integrity='sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl', crossorigin='anonymous')
+        //- font awesome for better font and icon styles
+        script(src='https://kit.fontawesome.com/fb8d36f674.js' crossorigin='anonymous')
+        //- full version of jQuery
         script(src='https://code.jquery.com/jquery-3.5.1.min.js', integrity='sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=', crossorigin='anonymous')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.9/cropper.min.js')
+        //- other scripts from bootsrap page
+        script(src='https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js', integrity='sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo', crossorigin='anonymous')
+        script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js', integrity='sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6', crossorigin='anonymous')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js')
 
         block scripts
 
         script(src="/js/common.js")
-    
+        script(src="/js/clientSocket.js")
+
